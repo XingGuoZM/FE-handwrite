@@ -1,4 +1,47 @@
 ## 前端手写系列
+- 手写let和const
+```js
+/**
+ * 块级作用域下有效
+ * 不能重复声明
+ * 不能预处理，不存在变量提升，即未声明之前的代码不能调用
+ */
+  (function(){
+    var i = 0;
+    console.log(i)
+  })()
+
+  //const
+  /**
+ * 
+ * @param {*} key 
+ * @param {*} value 
+ * 用于声明一个常量
+ * 块级作用域有效
+ * 不能重复声明
+ * 不能预处理，不存在变量提升，未声明之前不能调用
+ * 不能修改
+ * 声明时必须初始化
+ */
+function myConst(key,value){
+  window[key]=value;
+  Object.defineProperty(window,key,{
+    enumerable:false,
+    configurable:false,
+    get:function(){
+      return value;
+    },
+    set:function(newValue){
+      if(newValue!==value){
+        throw TypeError('这是只读变量，不可修改')
+      }else{
+        return value;
+      }
+    }
+  })
+
+}
+```
 - 手写call/bind
 ```js
 Function.prototype.myCall = function(ctx,...args){
@@ -297,7 +340,7 @@ const promiseTimeout = (promise,delay)=>{
 }
 
 ```
-- 手写但例模式、观察者模式
+- 手写单例模式、观察者模式
 ```js
 //单例模式
 function Singleton(name){
