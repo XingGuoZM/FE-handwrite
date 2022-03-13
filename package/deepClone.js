@@ -5,7 +5,9 @@ const deepClone = (target)=>{
   if(typeof target === 'object'){
     const obj = Array.isArray(target)?[]:{};
     for(let item in target){
-      obj[item] = deepClone(target(item));
+      if(obj.hasOwnProperty(item)){
+        obj[item] = deepClone(target(item));
+      }
     }
   }else{
     return target;

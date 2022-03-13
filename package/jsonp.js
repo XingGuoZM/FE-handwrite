@@ -1,3 +1,8 @@
+/**
+ * 
+ * @param {*} options 
+ * https://github.com/webmodules/jsonp/blob/master/index.js
+ */
 function myJsonp(options) {
 	return new Promise((resolve, reject) => {
 		//判断是否是第一次jsonp请求
